@@ -12,8 +12,8 @@ import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 
 import static com.codeborne.selenide.Condition.exactText;
-import static com.codeborne.selenide.Selenide.$;
-import static com.codeborne.selenide.Selenide.open;
+import static com.codeborne.selenide.Selenide.*;
+
 
 public class CardDelivery {
     public String generateDate(int days) {
@@ -69,7 +69,7 @@ public class CardDelivery {
     @Test
     void fillFormNoPhone() {
         Configuration.holdBrowserOpen = true;
-        $("[data-test-id=city] input").setValue("Казань");
+        $("[data-test-id=city] input").setValue("Ижевск");
         $("[data-test-id=date] input").doubleClick().sendKeys(Keys.DELETE);
         $("[data-test-id=date] input").setValue(planningDate);
         $("[data-test-id=name] input").setValue("Иванов Иван");
