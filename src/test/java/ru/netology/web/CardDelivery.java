@@ -49,7 +49,7 @@ public class CardDelivery {
         $("[data-test-id=phone] input").setValue("+79085685525");
         $("[data-test-id=agreement] span").click();
         $(By.className("button__text")).click();
-        $("[data-test-id=city].input__sub")
+        $("[data-test-id=city] .input__sub")
                 .shouldHave(exactText("Поле обязательно для заполнения"), Duration.ofSeconds(15));
 
     }
@@ -62,20 +62,20 @@ public class CardDelivery {
         $("[data-test-id=phone] input").setValue("+79085685525");
         $("[data-test-id=agreement] span").click();
         $(By.className("button__text")).click();
-        $("[data-test-id=name].input__sub")
+        $("[data-test-id=name] .input__sub")
                 .shouldHave(exactText("Поле обязательно для заполнения"), Duration.ofSeconds(15));
 
     }
     @Test
     void fillFormNoPhone() {
         Configuration.holdBrowserOpen = true;
-        $("[data-test-id=city] input").setValue("Ижевск");
+        $("[data-test-id=city] input").setValue("Казань");
         $("[data-test-id=date] input").doubleClick().sendKeys(Keys.DELETE);
         $("[data-test-id=date] input").setValue(planningDate);
         $("[data-test-id=name] input").setValue("Иванов Иван");
         $("[data-test-id=agreement] span").click();
         $(By.className("button__text")).click();
-        $("[data-test-id=phone].input__sub")
+        $("[data-test-id=phone] .input__sub")
                 .shouldHave(exactText("Поле обязательно для заполнения"), Duration.ofSeconds(15));
 
     }
