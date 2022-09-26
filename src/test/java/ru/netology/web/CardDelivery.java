@@ -21,15 +21,16 @@ public class CardDelivery {
     }
     String planningDate = generateDate(3);
 
-    @BeforeEach
-    void openPage() {
+     @BeforeEach
+    void setUp() {
+        Configuration.browser = "chrome";
+        Configuration.startMaximized = true;
         open("http://localhost:9999/");
+        $("[data-test-id='date'] input").doubleClick().sendKeys(Keys.BACK_SPACE);
     }
     @Test
     void fillForm() {
-        Configuration.holdBrowserOpen = true;
         $("[data-test-id=city] input").setValue("Ижевск");
-        $("[data-test-id=date] input").doubleClick().sendKeys(Keys.DELETE);
         $("[data-test-id=date] input").setValue(planningDate);
         $("[data-test-id=name] input").setValue("Иванов Иван");
         $("[data-test-id=phone] input").setValue("+79085685525");
@@ -42,8 +43,6 @@ public class CardDelivery {
 
     @Test
     void fillFormNoCity() {
-        Configuration.holdBrowserOpen = true;
-        $("[data-test-id=date] input").doubleClick().sendKeys(Keys.DELETE);
         $("[data-test-id=date] input").setValue(planningDate);
         $("[data-test-id=name] input").setValue("Иванов Иван");
         $("[data-test-id=phone] input").setValue("+79085685525");
@@ -55,9 +54,7 @@ public class CardDelivery {
     }
     @Test
     void fillFormNoName() {
-        Configuration.holdBrowserOpen = true;
         $("[data-test-id=city] input").setValue("Ижевск");
-        $("[data-test-id=date] input").doubleClick().sendKeys(Keys.DELETE);
         $("[data-test-id=date] input").setValue(planningDate);
         $("[data-test-id=phone] input").setValue("+79085685525");
         $("[data-test-id=agreement] span").click();
@@ -68,9 +65,7 @@ public class CardDelivery {
     }
     @Test
     void fillFormNoPhone() {
-        Configuration.holdBrowserOpen = true;
         $("[data-test-id=city] input").setValue("Ижевск");
-        $("[data-test-id=date] input").doubleClick().sendKeys(Keys.DELETE);
         $("[data-test-id=date] input").setValue(planningDate);
         $("[data-test-id=name] input").setValue("Иванов Иван");
         $("[data-test-id=agreement] span").click();
@@ -81,13 +76,10 @@ public class CardDelivery {
     }
     @Test
     void fillFormNoAgreement() {
-        Configuration.holdBrowserOpen = true;
         $("[data-test-id=city] input").setValue("Ижевск");
-        $("[data-test-id=date] input").doubleClick().sendKeys(Keys.DELETE);
         $("[data-test-id=date] input").setValue(planningDate);
         $("[data-test-id=name] input").setValue("Иванов Иван");
         $("[data-test-id=phone] input").setValue("+79085685525");
-        //$("[data-test-id=agreement] span").click();
         $(By.className("button__text")).click();
         $("[data-test-id=agreement].input_invalid .checkbox__text")
                 .shouldHave(Condition.text("Я соглашаюсь с условиями обработки и использования моих персональных данных"), Duration.ofSeconds(15));
@@ -95,9 +87,7 @@ public class CardDelivery {
     }
     @Test
     void fillFormNoValidCity() {
-        Configuration.holdBrowserOpen = true;
         $("[data-test-id=city] input").setValue("Izhevsk");
-        $("[data-test-id=date] input").doubleClick().sendKeys(Keys.DELETE);
         $("[data-test-id=date] input").setValue(planningDate);
         $("[data-test-id=name] input").setValue("Иванов Иван");
         $("[data-test-id=phone] input").setValue("+79085685525");
@@ -109,9 +99,7 @@ public class CardDelivery {
 
     @Test
     void fillFormNoValidPhone() {
-        Configuration.holdBrowserOpen = true;
         $("[data-test-id=city] input").setValue("Ижевск");
-        $("[data-test-id=date] input").doubleClick().sendKeys(Keys.DELETE);
         $("[data-test-id=date] input").setValue(planningDate);
         $("[data-test-id=name] input").setValue("Иванов Иван");
         $("[data-test-id=phone] input").setValue("+7908568552");
