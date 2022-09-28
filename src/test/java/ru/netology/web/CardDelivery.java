@@ -23,6 +23,7 @@ public class CardDelivery {
 
     @BeforeEach
     void openPage() {
+
         open("http://localhost:9999/");
     }
     @Test
@@ -122,5 +123,3 @@ public class CardDelivery {
                 .shouldHave(exactText("Телефон указан неверно. Должно быть 11 цифр, например, +79012345678."), Duration.ofSeconds(15));
     }
 }
-
-
